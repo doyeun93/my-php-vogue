@@ -96,7 +96,6 @@ const tgInput = `form.logF input[type=text][id!=email2],
         // [불통과 pass 변수 업데이트]
         pass = false;
 
-
     } // if //
 
     else{ // 아이디 검사 통과시
@@ -147,15 +146,34 @@ const tgInput = `form.logF input[type=text][id!=email2],
             async : false,
             // pass 변수 업데이트를 동기적으로 
             // 처리하기 위해 비동기옵션을 false로 처리해야함
+
             // 6. 성공처리, -> success
-            success :function(){},
+            success :function(res){
+                // res : 리턴된 결과값
+                if(res == "ok"){ // 아이디 중복 통과시
+                $("#mid").siblings(".msg").text("멋진 아이디네요!").addClass("on");
+                }/// if ///// 
+                // 아이디 중복일 경우
+                else{
+                $("#mid").siblings(".msg").text("이미 사용중인 아이디입니다").removeClass("on");
+
+                // [불통과 pass 변수 업데이트]
+                pass = false;
+                console.log("중복ID pass", pass);
+                } //// else ///////
+            },
+            
             // 7. 실패처리 -> error
-            error : function(){},
-        })
+                // xhr - XMLHttpRequest객체
+                // status - 실패상태코드
+                // error - 에러결과값
+            error : function(xhr,status,error){
+                alert("연결처리 실패:"+error);
+            },///// error /////
+         })
         
-        $(this).siblings(".msg").text("멋진 아이디네요!").addClass("on");
         // 클래스 on을 넣으면 녹색글자임 
-    }
+        } //// else ///
    } ///// else if ////
 
     /**************************************** 
