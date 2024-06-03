@@ -103,10 +103,56 @@ const tgInput = `form.logF input[type=text][id!=email2],
 
         // 1. DB에 조회하여 같은 아이디가 있다면
         // '이미 사용중인 아이디입니다' 와 같은 메시지출력
-        // 2. 만약 DB조회하여 같은 아이다가 없다면
+        // 2. 만약 DB조회하여 같은 아이디가 없다면
         // '멋진 아이디네요~!'와 같은 메시지출력
-        // 여기서 우선은 DB조회 못하므로 통과시 메시지로 출력
+        
 
+        /* 
+            [ Ajax로 중복아이디 검사하기! ]
+            ajax 처리 유형 2가지
+
+            1) post 방식 처리 메서드
+            - $.post(URL,data,callback)
+
+            2) get 방식 처리 메서드
+            - $.get(URL,callback)
+            -> get방식은 URL로 키=값 형식으로 데이터전송함!
+
+            3) 위의 2가지 유형 중 처리선택 메서드
+            - $.ajax({
+                전송할페이지,
+                전송방식,
+                보낼데이터,
+                전송할데이터타입,
+                비동기옵션,
+                성공처리,
+                실패처리
+            })
+            -> 보내는 값은 하나(객체데이터)
+            -> ajax 메서드안에 하나의 객체만 보내고 객체안에 7가지 유형의 데이터를 보냄!
+        */
+
+
+
+        $.ajax({
+            // 1. 전송할페이지, -> url()
+            url : "./process/chkID.php",
+            // 2. 전송방식, -> type()
+            type: "post",
+            // 3. 보낼데이터, -> data
+            data : {"mid":$('#mid').val()},
+            // 4. 전송할데이터타입, -> dataType
+            dataType:"html",
+            // 5. 비동기옵션, -> async(false는 동기)
+            async : false,
+            // pass 변수 업데이트를 동기적으로 
+            // 처리하기 위해 비동기옵션을 false로 처리해야함
+            // 6. 성공처리, -> success
+            success :function(){},
+            // 7. 실패처리 -> error
+            error : function(){},
+        })
+        
         $(this).siblings(".msg").text("멋진 아이디네요!").addClass("on");
         // 클래스 on을 넣으면 녹색글자임 
     }
