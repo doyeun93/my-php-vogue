@@ -56,7 +56,7 @@
               alert("안전하게 로그아웃 되었습니다!");
   
               // 첫페이지로 리로드
-              location.replace("index.php");
+              location.href = "index.php";
             } ////// if ////////////////
             else {
               // 메시지
