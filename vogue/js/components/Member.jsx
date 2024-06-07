@@ -77,9 +77,9 @@ export default function Member({changeMenu}){
               <li>
                 <span className="itit">성별</span>
                 <label htmlFor="gen1">남성</label>
-                <input type="radio" name="gen" id="gen1" value="M" />
+                <input type="radio" name="gen" id="gen1" value="m" />
                 <label htmlFor="gen2">여성</label>
-                <input type="radio" name="gen" id="gen2" value="W" checked />
+                <input type="radio" name="gen" id="gen2" value="w" checked />
 
                  {/* 라디오버튼의 name 속성을 같은 이름으로 쓰면 
                      그룹핑되어 하나만 선택된다! 
